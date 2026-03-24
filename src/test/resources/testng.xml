@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="none">
+
+    <listeners>
+        <listener class-name="utils.Listeners"/>
+    </listeners>
+
+<!--    <test name="Android_Tests">-->
+<!--        <parameter name="platformName" value="android"/>-->
+
+<!--        <classes>-->
+<!--                <class name="tests.LoginTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <test name="iOS_Tests">
+            <parameter name="platformName" value="ios"/>
+        <classes>
+            <class name="tests.LoginTest"/>
+        </classes>
+    </test>
+</suite>
