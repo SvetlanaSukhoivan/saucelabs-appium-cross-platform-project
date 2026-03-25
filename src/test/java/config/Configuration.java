@@ -18,6 +18,10 @@ public class Configuration {
     }
 
     public static String getProperty(String key) {
+        String systemProperty = System.getProperty(key);
+        if (systemProperty != null && !systemProperty.isEmpty()) {
+            return systemProperty;
+        }
         return properties.getProperty(key);
     }
 }
