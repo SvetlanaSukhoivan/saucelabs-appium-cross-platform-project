@@ -6,18 +6,10 @@
         <listener class-name="utils.Listeners"/>
     </listeners>
 
-<!--    <test name="Android_Tests">-->
-<!--        <parameter name="platformName" value="android"/>-->
-
-<!--        <classes>-->
-<!--                <class name="tests.LoginTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-
-    <test name="iOS_Tests">
-            <parameter name="platformName" value="ios"/>
+    <test name="Mobile_Tests">
         <classes>
             <class name="tests.LoginTest"/>
         </classes>
     </test>
+
 </suite>
