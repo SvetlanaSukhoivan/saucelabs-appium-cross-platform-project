@@ -10,7 +10,7 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    @AndroidFindBy(accessibility = "Username input field") // accessibility id обычно равен testID в React Native
+    @AndroidFindBy(accessibility = "Username input field")
     @iOSXCUITFindBy(accessibility = "Username input field")
     private WebElement usernameField;
 
@@ -27,8 +27,21 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+//    public LoginPage enterPassword(String password) {
+//        sendKeys(passwordField, password);
+//        hideKeyboardSafely();
+//        return this;
+//    }
+
     public LoginPage enterPassword(String password) {
         sendKeys(passwordField, password);
+
+        if (driver.getCapabilities().getPlatformName().toString().equalsIgnoreCase("ios")) {
+            passwordField.sendKeys("\n");
+        } else {
+            hideKeyboardSafely();
+        }
+
         return this;
     }
 

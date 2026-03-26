@@ -45,7 +45,13 @@ public class DriverFactory {
                         .setDeviceName(Configuration.getProperty("ios.deviceName"))
                         .setPlatformVersion(Configuration.getProperty("ios.platformVersion"))
                         .setApp(getAbsolutePath(Configuration.getProperty("ios.app.path")))
-                        .setAutomationName("XCUITest");
+                        .setBundleId("com.saucelabs.mydemoapp.rn")
+                        .setAutomationName("XCUITest")
+                        .setWdaLaunchTimeout(java.time.Duration.ofMinutes(5))
+                        .setAutoAcceptAlerts(true)
+                        .setConnectHardwareKeyboard(false);
+
+                        iosOptions.setCapability("appium:sendKeyStrategy", "grouped");
                 driver = new IOSDriver(appiumServerUrl, iosOptions);
                 break;
 
