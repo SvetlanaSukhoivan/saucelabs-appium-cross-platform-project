@@ -9,7 +9,7 @@ on:
 jobs:
   android-tests:
     name: Run Android Tests
-    runs-on: macos-14
+    runs-on: macos-14 # Mac M1
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -41,7 +41,7 @@ jobs:
         with:
           api-level: 33
           target: google_apis
-          arch: aarch64
+          arch: arm64-v8a # <--- ИСПРАВЛЕНИЕ: точное имя архитектуры Android
           profile: Nexus 6
           emulator-name: Pixel_9a
           script: |
@@ -58,7 +58,7 @@ jobs:
 
   ios-tests:
     name: Run iOS Tests
-    runs-on: macos-latest # Required for iOS (includes Xcode)
+    runs-on: macos-14
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -87,14 +87,10 @@ jobs:
           unzip src/test/resources/apps/app.zip -d src/test/resources/apps/
           rm src/test/resources/apps/app.zip
 
-      - name: Pre-boot iOS Simulator
-        # Launch the simulator in advance so that Appium doesn't waste time on it and doesn't time out
-        run: xcrun simctl boot "iPhone 15 Pro" || true
-
       - name: Run Appium and iOS Tests
         run: |
           appium --log-timestamp --log appium.log &
-          sleep 10
+          sleep 15
           mvn clean test -DplatformName=ios -Dios.platformVersion=18.5
 
       - name: Upload Allure Results
