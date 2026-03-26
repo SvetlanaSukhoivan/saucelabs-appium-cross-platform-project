@@ -109,7 +109,7 @@ jobs:
           appium --relaxed-security --log-timestamp --log appium.log &
           sleep 15
           set +e 
-          mvn clean test -DplatformName=ios -Dios.platformVersion=18.2
+          mvn clean test -DplatformName=ios -Dios.platformVersion=17.5
           TEST_EXIT_CODE=$? 
           set -e 
           kill -9 $(lsof -t -i:4723) || true
