@@ -27,9 +27,21 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+//    public LoginPage enterPassword(String password) {
+//        sendKeys(passwordField, password);
+//        hideKeyboardSafely();
+//        return this;
+//    }
+
     public LoginPage enterPassword(String password) {
         sendKeys(passwordField, password);
-        hideKeyboardSafely();
+
+        if (driver.getCapabilities().getPlatformName().toString().equalsIgnoreCase("ios")) {
+            passwordField.sendKeys("\n");
+        } else {
+            hideKeyboardSafely();
+        }
+
         return this;
     }
 

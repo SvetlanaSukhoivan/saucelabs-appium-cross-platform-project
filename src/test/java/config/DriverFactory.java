@@ -50,6 +50,8 @@ public class DriverFactory {
                         .setWdaLaunchTimeout(java.time.Duration.ofMinutes(5))
                         .setAutoAcceptAlerts(true)
                         .setConnectHardwareKeyboard(false);
+
+                        iosOptions.setCapability("appium:sendKeyStrategy", "grouped");
                 driver = new IOSDriver(appiumServerUrl, iosOptions);
                 break;
 
