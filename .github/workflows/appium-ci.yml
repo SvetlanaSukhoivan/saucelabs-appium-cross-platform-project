@@ -63,7 +63,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: allure-results-android
-          path: allure-results
+          path: target/allure-results
 
   # ==========================================
   # IOS JOB: Launch on macOS-14 (Apple M1)
@@ -110,4 +110,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: allure-results-ios
-          path: allure-results
+          path: target/allure-results

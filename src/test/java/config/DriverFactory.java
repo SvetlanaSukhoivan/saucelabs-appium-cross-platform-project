@@ -45,7 +45,8 @@ public class DriverFactory {
                         .setDeviceName(Configuration.getProperty("ios.deviceName"))
                         .setPlatformVersion(Configuration.getProperty("ios.platformVersion"))
                         .setApp(getAbsolutePath(Configuration.getProperty("ios.app.path")))
-                        .setAutomationName("XCUITest");
+                        .setAutomationName("XCUITest")
+                        .setWdaLaunchTimeout(java.time.Duration.ofMinutes(5));
                 driver = new IOSDriver(appiumServerUrl, iosOptions);
                 break;
 
