@@ -56,8 +56,12 @@ jobs:
           script: |
             appium --log-timestamp --log appium.log &
             sleep 10
-            mvn clean test -DplatformName=android || true
+            set +e 
+            mvn clean test -DplatformName=android
+            TEST_EXIT_CODE=$? 
+            set -e 
             kill -9 $(lsof -t -i:4723) || true
+            exit $TEST_EXIT_CODE
 
       - name: Upload Allure Results
         if: always()
@@ -104,8 +108,12 @@ jobs:
         run: |
           appium --relaxed-security --log-timestamp --log appium.log &
           sleep 15
-          mvn clean test -DplatformName=ios -Dios.platformVersion=18.2 || true
+          set +e 
+          mvn clean test -DplatformName=ios -Dios.platformVersion=18.2
+          TEST_EXIT_CODE=$? 
+          set -e 
           kill -9 $(lsof -t -i:4723) || true
+          exit $TEST_EXIT_CODE
 
       - name: Upload Allure Results
         if: always()
