@@ -23,7 +23,8 @@ public class BasePage {
     }
 
     protected void click(WebElement element) {
-        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        wait.until(ExpectedConditions.visibilityOf(element));
+                element.click();
     }
 
     protected void sendKeys(WebElement element, String text) {
@@ -47,7 +48,6 @@ public class BasePage {
                 ((HidesKeyboard) driver).hideKeyboard();
             }
         } catch (Exception e) {
-            // Тихо игнорируем, если клавиатуры нет
         }
     }
 }
