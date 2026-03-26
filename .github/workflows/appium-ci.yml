@@ -39,14 +39,15 @@ jobs:
       - name: Run Appium and Android Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 34
+          api-level: 31
           target: google_apis
           arch: arm64-v8a
           avd-name: Pixel_9a
           disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-audio -no-boot-anim -camera-back none
           script: |
             appium --log-timestamp --log appium.log &
-            sleep 10
+            sleep 15
             mvn clean test -DplatformName=android
 
       - name: Upload Allure Results
@@ -87,10 +88,13 @@ jobs:
           unzip src/test/resources/apps/app.zip -d src/test/resources/apps/
           rm src/test/resources/apps/app.zip
 
+      - name: Pre-boot iOS Simulator
+        run: xcrun simctl boot "iPhone 15 Pro" || true
+
       - name: Run Appium and iOS Tests
         run: |
           appium --log-timestamp --log appium.log &
-          sleep 15
+          sleep 20
           mvn clean test -DplatformName=ios -Dios.platformVersion=18.2
 
       - name: Upload Allure Results
