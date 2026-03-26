@@ -48,7 +48,8 @@ public class DriverFactory {
                         .setBundleId("com.saucelabs.mydemoapp.rn")
                         .setAutomationName("XCUITest")
                         .setWdaLaunchTimeout(java.time.Duration.ofMinutes(5))
-                        .setAutoAcceptAlerts(true);
+                        .setAutoAcceptAlerts(true)
+                        .setConnectHardwareKeyboard(false);
                 driver = new IOSDriver(appiumServerUrl, iosOptions);
                 break;
 
