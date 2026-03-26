@@ -30,7 +30,6 @@ public class BasePage {
     protected void sendKeys(WebElement element, String text) {
         wait.until(ExpectedConditions.visibilityOf(element));
         element.click();
-        element.clear();
         element.sendKeys(text);
     }
 
