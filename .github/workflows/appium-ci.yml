@@ -55,10 +55,9 @@ jobs:
           disable-animations: true
           script: |
             appium --log-timestamp --log appium.log &
-            APPIUM_PID=$!
             sleep 10
-            mvn clean test -DplatformName=android
-            kill $APPIUM_PID
+            mvn clean test -DplatformName=android || true
+            kill -9 $(lsof -t -i:4723) || true
 
       - name: Upload Allure Results
         if: always()
@@ -104,10 +103,9 @@ jobs:
       - name: Run Appium and iOS Tests
         run: |
           appium --relaxed-security --log-timestamp --log appium.log &
-          APPIUM_PID=$!
           sleep 15
-          mvn clean test -DplatformName=ios -Dios.platformVersion=18.2
-          kill $APPIUM_PID
+          mvn clean test -DplatformName=ios -Dios.platformVersion=18.2 || true
+          kill -9 $(lsof -t -i:4723) || true
 
       - name: Upload Allure Results
         if: always()
