@@ -1,6 +1,7 @@
 package pages;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.HidesKeyboard;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -16,9 +17,9 @@ public class BasePage {
 
     public BasePage(AppiumDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-        PageFactory.initElements(new AppiumFieldDecorator(driver, Duration.ofSeconds(10)), this);
+        PageFactory.initElements(new AppiumFieldDecorator(driver, Duration.ofSeconds(0)), this);
     }
 
     protected void click(WebElement element) {
@@ -37,6 +38,16 @@ public class BasePage {
             return true;
         } catch (TimeoutException e) {
             return  false;
+        }
+    }
+
+    protected void hideKeyboardSafely() {
+        try {
+            if (driver instanceof HidesKeyboard) {
+                ((HidesKeyboard) driver).hideKeyboard();
+            }
+        } catch (Exception e) {
+            // Тихо игнорируем, если клавиатуры нет
         }
     }
 }
