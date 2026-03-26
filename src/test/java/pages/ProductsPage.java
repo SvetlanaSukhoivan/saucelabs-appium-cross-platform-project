@@ -17,12 +17,17 @@ public class ProductsPage extends BasePage {
     private WebElement productsScreenContainer;
 
     public boolean isCatalogDisplayed() {
-        try {
-            wait.until(ExpectedConditions.visibilityOf(productsScreenContainer));
-            return productsScreenContainer.isDisplayed();
-        } catch (TimeoutException e) {
-            System.out.println("The product catalog did not appear within the specified timeout period");
-            return false;
-        }
+        return waitForIsDisplayed(productsScreenContainer);
     }
 }
+
+
+//public boolean isCatalogDisplayed() {
+//    try {
+//        wait.until(ExpectedConditions.visibilityOf(productsScreenContainer));
+//        return productsScreenContainer.isDisplayed();
+//    } catch (TimeoutException e) {
+//        System.out.println("The product catalog did not appear within the specified timeout period");
+//        return false;
+//    }
+//}

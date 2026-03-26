@@ -9,7 +9,7 @@ on:
 jobs:
   android-tests:
     name: Run Android Tests
-    runs-on: macos-latest # Using a Mac for a FAST Android Emulator
+    runs-on: macos-13 # Using a Mac for a FAST Android Emulator
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

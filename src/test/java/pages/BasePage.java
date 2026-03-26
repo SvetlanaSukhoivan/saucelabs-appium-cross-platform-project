@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import org.openqa.selenium.TimeoutException;
 
 public class BasePage {
     protected AppiumDriver driver;
@@ -28,5 +29,14 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
         element.clear();
         element.sendKeys(text);
+    }
+
+    protected boolean waitForIsDisplayed(WebElement element) {
+        try {
+            wait.until(ExpectedConditions.visibilityOf(element));
+            return true;
+        } catch (TimeoutException e) {
+            return  false;
+        }
     }
 }
